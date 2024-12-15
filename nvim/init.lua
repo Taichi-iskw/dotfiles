@@ -5,6 +5,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.directory = '~/.swqpfiles'
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

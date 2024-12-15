@@ -1,5 +1,4 @@
 ZSH_THEME="robbyrussell"
-
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export LANG=C
@@ -12,7 +11,7 @@ source $ZSH/oh-my-zsh.sh
 
 # alias
 alias a='alias'
-alias g='grep'
+alias g='git'
 alias k='kubectl'
 alias v='nvim'
 
@@ -23,6 +22,9 @@ alias vf='v $(fzf)'
 alias vim='nvim'
 
 alias python='python3'
+
+# git alias
+alias gs='git status'
 
 # Increment Search
 bindkey -v
