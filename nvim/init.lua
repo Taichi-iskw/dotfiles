@@ -9,7 +9,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- キーマッピング
+-- keymaping
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files<CR>")
 vim.keymap.set("n", "<Leader>g", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<Leader>b", ":Telescope buffers<CR>")
@@ -28,32 +28,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Telescope
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-  -- LSPサポート
 	{
 			"hrsh7th/nvim-cmp",
 			dependencies = {
-					"hrsh7th/cmp-nvim-lsp",     -- LSP用補完ソース
-					"hrsh7th/cmp-buffer",       -- 現在のバッファ内の補完
-					"hrsh7th/cmp-path",         -- ファイルパスの補完
-					"hrsh7th/cmp-cmdline",      -- コマンドライン補完
-					"L3MON4D3/LuaSnip",         -- スニペットエンジン
-					"saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
+					"hrsh7th/cmp-nvim-lsp",
+					"hrsh7th/cmp-buffer",
+					"hrsh7th/cmp-path",
+					"hrsh7th/cmp-cmdline",
+					"L3MON4D3/LuaSnip",
+					"saadparwaiz1/cmp_luasnip",
 			},
 	},
-	{ "neovim/nvim-lspconfig" }, -- LSP設定用	
-  -- 自動補完
-  { "hrsh7th/nvim-cmp", dependencies = { "hrsh7th/cmp-nvim-lsp" } },
-  -- スニペット
-  { "L3MON4D3/LuaSnip" },
-  -- ファイラー
+	{ "neovim/nvim-lspconfig" },
 	{ "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
-  -- ステータスライン
   { "nvim-lualine/lualine.nvim" },
-  -- コメント用プラグイン
   { "numToStr/Comment.nvim" },
-	-- かっこ補完
 	{ "windwp/nvim-autopairs" },
 })
 
@@ -64,22 +54,22 @@ local cmp = require("cmp")
 cmp.setup({
     snippet = {
         expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- LuaSnipをスニペットエンジンとして使用
+            require("luasnip").lsp_expand(args.body) 
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- ドキュメントをスクロール
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(), -- 補完を手動で呼び出し
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enterで補完確定
-        ["<Tab>"] = cmp.mapping.select_next_item(), -- Tabで次の候補へ
-        ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- Shift+Tabで前の候補へ
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping.select_next_item(),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     }),
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },    -- LSP補完
-        { name = "luasnip" },    -- スニペット補完
-        { name = "buffer" },     -- 現在のバッファ補完
-        { name = "path" },       -- ファイルパス補完
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
     }),
 })
 
@@ -95,20 +85,21 @@ lspconfig.gopls.setup({
 
 -- LSP END --- 
 
--- pair
+-- nvim-autopairs
 require("nvim-autopairs").setup({
 	check_ts = true,
 })
 
+-- nvim-tree
 require("nvim-tree").setup({
     view = {
-        width = 30, -- ファイラーの幅
-        side = "left", -- 左に表示
+        width = 30,
+        side = "left",
     },
     renderer = {
         icons = {
             show = {
-                git = true, -- Gitステータスの表示
+                git = true,
                 folder = true,
                 file = true,
             },

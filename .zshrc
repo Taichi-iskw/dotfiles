@@ -2,6 +2,7 @@ ZSH_THEME="robbyrussell"
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+export LANG=C
 
 plugins=(git docker)
 
