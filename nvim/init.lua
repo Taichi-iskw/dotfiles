@@ -5,16 +5,21 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.directory = '$HOME/.swqpfiles'
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- keymaping
+-- keymaping ------------------
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files<CR>")
 vim.keymap.set("n", "<Leader>g", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<Leader>b", ":Telescope buffers<CR>")
-vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-h>", ":bprev<CR>")
+vim.keymap.set("n", "<C-l>", ":bnext<CR>")
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-m>", ":NvimTreeFocus<CR>")
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -30,6 +35,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "neovim/nvim-lspconfig" },
+	{ "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
+	{ "akinsho/bufferline.nvim" },
+  { "nvim-lualine/lualine.nvim" },
+  { "numToStr/Comment.nvim" },
+	{ "windwp/nvim-autopairs" },
+	{"lewis6991/gitsigns.nvim", config = true},
+	{ "numToStr/Comment.nvim" },
 	{
 			"hrsh7th/nvim-cmp",
 			dependencies = {
@@ -41,11 +54,6 @@ require("lazy").setup({
 					"saadparwaiz1/cmp_luasnip",
 			},
 	},
-	{ "neovim/nvim-lspconfig" },
-	{ "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
-  { "nvim-lualine/lualine.nvim" },
-  { "numToStr/Comment.nvim" },
-	{ "windwp/nvim-autopairs" },
 })
 
 
@@ -107,4 +115,7 @@ require("nvim-tree").setup({
         },
     },
 })
+
+-- bufferline
+require('bufferline').setup{}
 
