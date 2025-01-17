@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 # alias
 alias a='alias'
+alias d='docker'
 alias g='git'
 alias k='kubectl'
 alias v='nvim'
@@ -21,6 +22,7 @@ alias sz='source ~/.zshrc'
 alias vf='v $(fzf)'
 
 alias vim='nvim'
+alias dev='cd ~/develop/'
 
 alias python='python3'
 
@@ -28,11 +30,10 @@ alias python='python3'
 alias gs='git status'
 
 # Increment Search
-bindkey -v
+#bindkey -v
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 export SAVEHIST=100000
-
